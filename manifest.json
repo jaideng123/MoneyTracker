@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Getting started example",
+  "description": "This extension shows a Google Image search result for the current page",
+  "version": "1.0",
+  "options_page": "options.html",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Click Here"
+  },
+  "content_scripts": [{
+        "matches": ["*://*.amazon.com/*"],
+        "js":      ["jquery-1.11.3.min.js","content.js"]
+  }],
+  "permissions": [
+    "activeTab",
+    "notifications",
+    "storage",
+    "https://ajax.googleapis.com/",
+    "https://*/"
+  ]
+}
