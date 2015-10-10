@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Money Tracker",
-  "description": "Warns you of your bank account balance while shopping on Amazon",
+  "name": "CashTracker",
+  "description": "Warns you of your bank account balance while shopping on Amazon and Walmart.com",
   "version": "1.0",
   "options_page": "options.html",
 
@@ -20,7 +20,6 @@
   },
   "permissions": [
     "activeTab",
-    "notifications",
     "storage",
     "https://ajax.googleapis.com/",
     "<all_urls>"
