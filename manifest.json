@@ -15,6 +15,9 @@
         "matches": ["*://*.amazon.com/*"],
         "js":      ["jquery-1.11.3.min.js","content.js"]
   }],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "activeTab",
     "notifications",

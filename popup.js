@@ -102,6 +102,8 @@ var elem
 var accountID
 var done = 0
 document.addEventListener('DOMContentLoaded', function() {
+    chrome.runtime.sendMessage("normal_icon");
+
     // Put the image URL in Google search.
     //renderStatus('Performing Google Imag search for ' + url);
     //chrome.extension.getBackgroundPage().console.log('Hello!');
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         done += 1
         if(done == 2){
           newBalance = balance - cost
-          renderPost('$' + newBalance)
+          renderPost(newBalance)
         }
       });
     });

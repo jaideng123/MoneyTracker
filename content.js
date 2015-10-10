@@ -1,5 +1,7 @@
 /* Listen for messages */
+
 $(document).ready(function(){
+	chrome.runtime.sendMessage("alert_icon");
 	chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	    /* If the received message has the expected format... */
 	    if (msg.text && (msg.text == "report_back")) {
