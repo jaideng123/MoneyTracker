@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head><title>My Test Extension Options</title></head>
+<head><title>My Test Extension Options</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+</head>
 <body>
 <style type="text/css">
 	#acct-selection{
@@ -16,10 +18,14 @@
 	.account{
 		max-width: 400px;
 	}
+	#CID{
+		width: 250px;
+	}
 });
 </style>
-
-Capital One Customer ID:
+<div class = 'container'>
+<h3>Options</h3>
+<b>Capital One Customer ID:</b>
 <input type ='text' id = 'CID'><br>
 Select Your Account: 
 <div id = 'acct-selection'>
@@ -75,8 +81,9 @@ Select Your Account:
 </div>
 </div>
 <div id="status"></div>
-<button id="save">Save</button>
+<button id="save" class = 'btn btn-default'>Save</button>
 <script src= "jquery-1.11.3.min.js"></script>
 <script src="options.js"></script>
+</div>
 </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Money Tracker",
+  "description": "Warns you of your bank account balance while shopping on Amazon",
   "version": "1.0",
   "options_page": "options.html",
 
@@ -12,7 +12,7 @@
     "default_title": "Click Here"
   },
   "content_scripts": [{
-        "matches": ["*://*.amazon.com/*"],
+        "matches": ["*://*.amazon.com/*","*://*.walmart.com/*"],
         "js":      ["jquery-1.11.3.min.js","content.js"]
   }],
   "background": {
@@ -23,6 +23,6 @@
     "notifications",
     "storage",
     "https://ajax.googleapis.com/",
-    "https://*/"
+    "<all_urls>"
   ]
 }

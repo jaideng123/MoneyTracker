@@ -34,6 +34,9 @@ function doneTyping () {
         fillAccountOptions(accounts)
       })
   }
+  else{
+    $('#acct-selection').css('display','none')
+  }
 }
 function save_options() {
   var customerID = document.getElementById('CID').value;

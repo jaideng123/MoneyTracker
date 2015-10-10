@@ -7,17 +7,18 @@
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
+     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <style>
       body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-        width: 300px;
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        width: 350px;
+        min-width: 300px;
       }
       #pre-balance{
         color:green;
       }
       #post-balance{
-        text-align: center;
         color: green;
       }
       #cost{
@@ -27,11 +28,9 @@
         display: none;
       }
       #post-desc{
-        text-align: center;
         display: none;
       }
     </style>
-
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
@@ -42,11 +41,19 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    Your Balance : <span id="pre-balance"></span>
-    <div id='price-desc'>Price of this item : <span id="cost"></span></div>
-    <div id='post-desc'>Estimated Balance after purchase 
-    <div id="post-balance"></div></div>
-
+    <div class="container">
+    <div class='row'>
+      <div class = "col-xs-6">Your Balance : </div>
+    <div class = "col-xs-6 text-right"><span id="pre-balance"></span></div></div>
+    <div class='row'>
+    <div class = "col-xs-6"><div id='price-desc'>Price : </div></div>
+    <div class = "col-xs-6 text-right"><span id="cost"></span></div></div>
+    <div class='row'>
+      <div class = "col-xs-8"><div id='post-desc'>Est. Balance after purchase:</div></div>
+      <div class = "col-xs-4 text-right">
+    <span id="post-balance"></span></div>
+  </div>
+  </div>
   </body>
 </html>
 

@@ -62,7 +62,31 @@ xhr.onreadystatechange = function() {
     callback(xhr.responseText);
   }
 }
-xhr.send();}
+xhr.send();
+}
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+
+  } else if (typeof XDomainRequest != "undefined") {
+
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+
+  }
+  return xhr;
+}
 
 function renderPre(statusText) {
   document.getElementById('pre-balance').textContent = statusText;
@@ -88,7 +112,18 @@ function onAmazon(callback){
           callback(tab)
         }
     });
-}        
+}    
+function onWalMart(callback){
+   var tabID
+   var tabUrl
+  chrome.tabs.getSelected(null, function(tab) {
+        tabID = tab.id;
+        tabUrl = tab.url;
+        if(tabUrl.substring(0,26) == 'http://www.walmart.com/ip/' || tabUrl.substring(0,29) =='https://www.walmart.com/cart/'){
+          callback(tab)
+        }
+    });
+}           
 
 function doStuffWithDOM(element) {
     alert("I received the following DOM content:\n" + element);
@@ -121,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         done += 1
         if(done == 2){
           newBalance = balance - cost
-          renderPost(newBalance)
+          renderPost('$' + newBalance)
         }
       });
     });
@@ -137,6 +172,39 @@ document.addEventListener('DOMContentLoaded', function() {
                                     renderPost('$' + newBalance)
                                   }
                                 });
+    });
+    onWalMart(function(tab){
+      if(tab.url.substring(0,26) == 'http://www.walmart.com/ip/'){
+          id = tab.url.match(/[0-9\s]{8}/)[0]
+          url = 'http://api.walmartlabs.com/v1/items/'+ id + '?apiKey=7tx722ee7mwy988d6ex8skyu&format=json'
+          getUrl(url, function(results) {
+            console.log(results);
+            var item = JSON.parse(results);
+            cost = Number(item.salePrice)
+            renderCost('$' + cost)
+            done += 1
+            if(done == 2){
+              newBalance = balance - cost
+              renderPost('$' + newBalance)
+            }
+          });
+      }
+      else{
+        chrome.tabs.sendMessage(tab.id, { text: "report_back_walmart" },
+          function(element){
+          cost = element.trim()
+          cost = cost.replace(/\,/g,'')
+          renderCost(cost)
+          cost = Number(cost.substring(1))
+          done += 1
+          if(done == 2){
+            newBalance = balance - cost
+            renderPost('$' + newBalance)
+          }
+
+        });
+      }
+
     });
     //else
       //alert('bad')
