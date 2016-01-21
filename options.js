@@ -28,7 +28,7 @@ xhr.send();}
 function doneTyping () {
   var customerID = document.getElementById('CID').value;
   if(customerID.length == 24){
-    var url = 'http://api.reimaginebanking.com/customers/'+customerID+'/accounts?key=aaf37afb12d98c6d8610edfde329b8f0'
+    var url = 'http://api.reimaginebanking.com/customers/'+customerID+'/accounts?key=<CAPITALONEKEY>'
       getUrl(url,function(res){
         var accounts = JSON.parse(res)
         fillAccountOptions(accounts)
@@ -92,7 +92,7 @@ function restore_options() {
     $($("input[type='radio'][name='accounts']")[items.i]).prop("checked", true)
     $($("input[type='radio'][name='accounts']")[items.i]).parent().addClass("checked")
     if(items.CID.length == 24){
-    var url = 'http://api.reimaginebanking.com/customers/'+items.CID+'/accounts?key=aaf37afb12d98c6d8610edfde329b8f0'
+    var url = 'http://api.reimaginebanking.com/customers/'+items.CID+'/accounts?key=<CAPITALONEKEY>'
       getUrl(url,function(res){
         var accounts = JSON.parse(res)
         fillAccountOptions(accounts)
