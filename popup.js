@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     AID: ''
     }, function(items) {
     accountID = items.AID;
-    url = 'http://api.reimaginebanking.com/accounts/'+accountID+'?key=aaf37afb12d98c6d8610edfde329b8f0'
+    url = 'http://api.reimaginebanking.com/accounts/'+accountID+'?key=<CAPITALONEKEY>'
       getUrl(url, function(results) {
         console.log(results);
         var account = JSON.parse(results);
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onWalMart(function(tab){
       if(tab.url.substring(0,26) == 'http://www.walmart.com/ip/'){
           id = tab.url.match(/[0-9\s]{8}/)[0]
-          url = 'http://api.walmartlabs.com/v1/items/'+ id + '?apiKey=7tx722ee7mwy988d6ex8skyu&format=json'
+          url = 'http://api.walmartlabs.com/v1/items/'+ id + '?apiKey=<WALMARTKEY>&format=json'
           getUrl(url, function(results) {
             console.log(results);
             var item = JSON.parse(results);
